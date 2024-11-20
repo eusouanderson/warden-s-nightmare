@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsmotrwjdqo54"]
+
+[ext_resource type="Script" path="res://Scripts/character.gd" id="1_lihgy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwgoh"]
+albedo_color = Color(0.561805, 0.164593, 0.370874, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nuhg8"]
+material = SubResource("StandardMaterial3D_uwgoh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqgyu"]
+albedo_color = Color(0.0705882, 1, 0.0745098, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_v7t2n"]
+material = SubResource("StandardMaterial3D_bqgyu")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i8cbf"]
+
+[node name="Character" type="CharacterBody3D"]
+script = ExtResource("1_lihgy")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_nuhg8")
+
+[node name="Arm" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.41223e-08, 0.45, 0, -1.0094, -1.96701e-08, 0, 1.25, 0)
+mesh = SubResource("PrismMesh_v7t2n")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_i8cbf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.999848, 0, -0.0174525, 0.00792327, 0.891007, -0.453922, 0.0155503, -0.45399, -0.890871, 0, 1.25, -0.2)

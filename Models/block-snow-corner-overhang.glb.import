@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/block-snow-corner-overhang.glb-1798a7ee661a83
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="StaticBody3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

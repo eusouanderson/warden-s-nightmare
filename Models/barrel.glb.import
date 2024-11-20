@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/barrel.glb-9f002861d777c80900fa57358e3d135c.s
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
+nodes/root_type="StaticBody3D"
+nodes/root_name="barrel"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false

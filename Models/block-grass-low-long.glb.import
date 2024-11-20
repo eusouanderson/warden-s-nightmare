@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/block-grass-low-long.glb-b44d482b8188bd6c65f9
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="StaticBody3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
