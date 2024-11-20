@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dilimvuyx56uu"]
+
+[ext_resource type="PackedScene" uid="uid://oifay6ocwmeh" path="res://Objects/tree_2.tscn" id="1_7fyii"]
+[ext_resource type="PackedScene" uid="uid://crx0xsmktf8h" path="res://Objects/crate.tscn" id="1_dxle8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gv1i1"]
+size = Vector2(100, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2sje3"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[node name="World" type="Node3D"]
+
+[node name="tree" parent="." instance=ExtResource("1_7fyii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13736, 0, -0.232464)
+
+[node name="crate" parent="." instance=ExtResource("1_dxle8")]
+
+[node name="crate2" parent="." instance=ExtResource("1_dxle8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.3201)
+
+[node name="crate3" parent="." instance=ExtResource("1_dxle8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62358, 0, 0.608063)
+
+[node name="crate4" parent="." instance=ExtResource("1_dxle8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87787, 7.2036, -2.86499)
+
+[node name="crate6" parent="." instance=ExtResource("1_dxle8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87787, 7.2036, -2.86499)
+
+[node name="crate7" parent="." instance=ExtResource("1_dxle8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87787, 7.2036, -2.86499)
+
+[node name="crate8" parent="." instance=ExtResource("1_dxle8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87787, 9.43623, -2.86499)
+
+[node name="crate5" parent="." instance=ExtResource("1_dxle8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16637, 0, -2.86499)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.958273, 0.285856, 0, -0.285856, 0.958273, 0, 4, 6)
+current = true
+fov = 63.3455
+
+[node name="ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00799656, -0.00845909, -0.00199401)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.120308, 0.0170784, 0.0809879)
+mesh = SubResource("PlaneMesh_gv1i1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+shape = SubResource("ConcavePolygonShape3D_2sje3")
