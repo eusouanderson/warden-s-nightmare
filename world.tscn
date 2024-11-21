@@ -1,7 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dilimvuyx56uu"]
+[gd_scene load_steps=11 format=3 uid="uid://dilimvuyx56uu"]
 
 [ext_resource type="PackedScene" uid="uid://oifay6ocwmeh" path="res://Objects/tree_2.tscn" id="1_7fyii"]
-[ext_resource type="PackedScene" uid="uid://crx0xsmktf8h" path="res://Objects/crate.tscn" id="1_dxle8"]
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_q2kgn"]
+[ext_resource type="PackedScene" uid="uid://dsmotrwjdqo54" path="res://Objects/character.tscn" id="2_1qc6m"]
+[ext_resource type="PackedScene" uid="uid://jv76n0wcv6o6" path="res://Objects/blocklowlarge.tscn" id="2_y8sdr"]
+[ext_resource type="Script" path="res://Scripts/directional_light_3d.gd" id="3_jhg7t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rne3"]
+ao_enabled = true
+ao_light_affect = 1.0
+ao_on_uv2 = true
+ao_texture_channel = 1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gv1i1"]
 size = Vector2(100, 100)
@@ -9,45 +18,57 @@ size = Vector2(100, 100)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2sje3"]
 data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0s1gb"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ae8dd"]
+material = SubResource("ShaderMaterial_0s1gb")
+radius = 25.0
+height = 50.0
+
 [node name="World" type="Node3D"]
-
-[node name="tree" parent="." instance=ExtResource("1_7fyii")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13736, 0, -0.232464)
-
-[node name="crate" parent="." instance=ExtResource("1_dxle8")]
-
-[node name="crate2" parent="." instance=ExtResource("1_dxle8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.3201)
-
-[node name="crate3" parent="." instance=ExtResource("1_dxle8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62358, 0, 0.608063)
-
-[node name="crate4" parent="." instance=ExtResource("1_dxle8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87787, 7.2036, -2.86499)
-
-[node name="crate6" parent="." instance=ExtResource("1_dxle8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87787, 7.2036, -2.86499)
-
-[node name="crate7" parent="." instance=ExtResource("1_dxle8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87787, 7.2036, -2.86499)
-
-[node name="crate8" parent="." instance=ExtResource("1_dxle8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87787, 9.43623, -2.86499)
-
-[node name="crate5" parent="." instance=ExtResource("1_dxle8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16637, 0, -2.86499)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.958273, 0.285856, 0, -0.285856, 0.958273, 0, 4, 6)
-current = true
-fov = 63.3455
+script = ExtResource("1_q2kgn")
 
 [node name="ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00799656, -0.00845909, -0.00199401)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.120308, 0.0170784, 0.0809879)
+material_override = SubResource("StandardMaterial3D_4rne3")
 mesh = SubResource("PlaneMesh_gv1i1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_2sje3")
+
+[node name="lvl1" type="Node3D" parent="."]
+
+[node name="block-grass" parent="lvl1" instance=ExtResource("2_y8sdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="tree2" parent="lvl1" instance=ExtResource("1_7fyii")]
+transform = Transform3D(0.997664, 0.0510384, 0.0454088, -0.0534173, 0.997175, 0.0528149, -0.0425849, -0.0551171, 0.997571, 0, 0, 3)
+
+[node name="tree3" parent="lvl1" instance=ExtResource("1_7fyii")]
+transform = Transform3D(0.997664, 0.0510384, 0.0454088, -0.0534173, 0.997175, 0.0528149, -0.0425849, -0.0551171, 0.997571, 5, 0, 3)
+
+[node name="Character" parent="." instance=ExtResource("2_1qc6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.998798, 0.034729, 0.0345795, -0.0353949, 0.999196, 0.0188344, -0.0338976, -0.0200357, 0.999225, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CharacterBody3D"]
+transform = Transform3D(-0.860879, 0.232726, -0.452467, 0.111881, 0.954083, 0.277862, 0.496357, 0.188583, -0.847388, 0, 48, 0)
+visibility_parent = NodePath("../../ground/MeshInstance3D")
+light_color = Color(0.955681, 0.891527, 0.513082, 1)
+light_energy = 1.451
+light_indirect_energy = 7.095
+light_volumetric_fog_energy = 5.419
+light_angular_distance = 1.9
+shadow_enabled = true
+script = ExtResource("3_jhg7t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(-0.860879, 0.232726, -0.452467, 0.111881, 0.954083, 0.277862, 0.496357, 0.188583, -0.847388, 0, 48, 0)
+mesh = SubResource("CapsuleMesh_ae8dd")
+skeleton = NodePath("../DirectionalLight3D")

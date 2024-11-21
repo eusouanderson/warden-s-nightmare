@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/block-snow.glb-d21e36ecc168e1ba5aaf59274cb833
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="StaticBody3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
